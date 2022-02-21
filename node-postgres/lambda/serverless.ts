@@ -3,6 +3,8 @@ import type { AWS } from '@serverless/typescript';
 import hello from '@functions/hello';
 import getPersons from '@functions/get-persons';
 
+const { DB_CONNECTION } = process.env;
+
 const serverlessConfiguration: AWS = {
   service: 'lambda',
   frameworkVersion: '3',
@@ -17,6 +19,7 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      DB_CONNECTION, 
     },
   },
   // import the function via paths

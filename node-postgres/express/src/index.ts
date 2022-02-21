@@ -1,6 +1,8 @@
 import express from 'express';
 import knex, { Knex } from 'knex';
 
+const { DB_CONNECTION = 'postgresql://postgres:password@localhost:5432/postgres' } = process.env;
+
 const app = express();
 
 app.use(express.json());
@@ -13,7 +15,7 @@ type Person = {
 
 const config: Knex.Config = {
   client: 'pg',
-  connection: 'postgresql://postgres:password@localhost:5432/postgres'
+  connection: DB_CONNECTION
 };
 
 const knexInstance = knex(config);

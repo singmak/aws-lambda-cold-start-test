@@ -6,6 +6,8 @@ import KnexPosgres from 'knex/lib/dialects/postgres';
 
 import schema from './schema';
 
+const { DB_CONNECTION } = process.env;
+
 type Person = {
   id: number;
   name: string;
@@ -14,7 +16,7 @@ type Person = {
 
 const config: Knex.Config = {
   client: KnexPosgres,
-  connection: 'postgresql://postgres:password@localhost:5432/postgres'
+  connection: DB_CONNECTION,
 };
 
 const knexInstance = knex(config);
